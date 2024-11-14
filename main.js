@@ -35,26 +35,28 @@ let array = [
 
 const table = document.createElement('table');
     document.body.appendChild(table);
-const tbody = document.createElement('tbody');
 
 const thead = document.createElement('thead');
     table.appendChild(thead);
 const tr = document.createElement('tr');
     thead.appendChild(tr);
 
-const uralkodo = document.createElement('tr');  
+const tbody = document.createElement('tbody');
+    table.appendChild(tbody)
+
+const uralkodo = document.createElement('th');  
     uralkodo.innerHTML = 'Úralkodó'
     tr.appendChild(uralkodo)
 
-const esemeny = document.createElement('tr');
+const esemeny = document.createElement('th');
     esemeny.innerHTML = 'Esemény';
     tr.appendChild(esemeny);
 
-const evszam = document.createElement('tr');
+const evszam = document.createElement('th');
     evszam.innerHTML = 'Évszám';
     tr.appendChild(evszam);
 
-
+irdki(array);
 
     const form = document.getElementById('form');
 form.addEventListener('submit' ,function(e){
@@ -84,10 +86,58 @@ form.addEventListener('submit' ,function(e){
     ]
 
     array.push(adatok);
-    form.reset();
+    irdki(array);
+    
 })
+form.reset();
 
-    function irdki(){
+
+    function irdki(tomb){
+        tbody.innerHTML = "";
+
+        for(let adat of tomb){
+            const tr_body = document.createElement('tr');
+
+
+            const nev = document.createElement('td');
+            nev.innerHTML =adat.uralkodo_nev;
+            nev.rowSpan = adat.esemeny2 ? 2 : 1;
+            tr_body.appendChild(nev);
+
+
+
+            const esemeny = document.createElement('td');
+            esemeny.innerHTML = adat.esemeny1;
+            tr_body.appendChild(esemeny);
+            
+
+
+
+            const ev1 = document.createElement('td');
+            ev1.innerHTML = adat.evszam1;
+            tr_body.appendChild(ev1);
+
+
+            tbody.appendChild(tr_body);
+        
+        if(adat.esemeny2 && adat.evszam2){
+            const ujsor = document.createElement('tr')
+
+            const esemeny2 = document.createElement('td');
+            esemeny2.innerHTML = adat.esemeny2;
+            ujsor.appendChild(esemeny2);
+
+            const ev2 = document.createElement('td')
+            ev2.innerHTML = adat.evszam2;
+            ujsor.appendChild(ev2);
+
+            tbody.appendChild(ujsor);
+        }
+        
+        
+        
+        }
+       
 
 }
 
