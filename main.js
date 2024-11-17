@@ -73,23 +73,27 @@ form.addEventListener('submit' ,function(e){
     const evszam1_value = evszam1.value;
     const esemeny2_value = esemeny2.value;
     const evszam2_value = evszam2.value;
-
-
-    const adatok = [
-        {
-            uralkodo : uralkodo_nev_value ,
-            esemeny1 : esemeny1_value,
-            evszam1 : evszam1_value,
-            esemeny2 : esemeny2_value,
-            evszam2 : evszam2_value,
+    if(validatefields(uralkodo,esemeny1,evszam1, )&& validatefields2(esemeny2,evszam2)){
+        const adatok = 
+            {
+                uralkodo_nev : uralkodo_nev_value ,
+                esemeny1 : esemeny1_value,
+                evszam1 : evszam1_value,
+                esemeny2 : esemeny2_value,
+                evszam2 : evszam2_value,
+            }
+        
+           
+        array.push(adatok);
+        irdki(array);
+        form.reset();
         }
-    ]
+        
+        
 
-    array.push(adatok);
-    irdki(array);
-    
-})
-form.reset();
+}     
+)
+
 
 
     function irdki(tomb){
@@ -139,6 +143,48 @@ form.reset();
         }
        
 
+}
+
+function validatefields(uralkodo,esemeny1,evszam1){
+    let result = true;
+
+    if(uralkodo.value === ""){
+        result = false;
+        const error = document.getElementById('error');
+        error.value="Nagyon rossz te majom";
+    }
+
+    if(esemeny1.value === ""){
+        result = false;
+        const error = document.getElementById('error');
+        error.value="Nagyon rossz te majom";
+    }
+
+    if(evszam1.value === ""){
+        result = false;
+        const error = document.getElementById('error');
+        error.value="Nagyon rossz te majom";
+    }
+
+    return result;
+}
+
+function validatefields2(esemeny2,evszam2){
+    let result = true;
+
+    if(esemeny2.value === "" && evszam2 != "" ){
+        result = false;
+        const error = document.getElementById('error');
+        error.value="Nagyon rossz te majom";
+    }
+
+    if(evszam2.value === "" && esemeny2 != "" ){
+        result = false;
+        const error = document.getElementById('error');
+        error.value="Nagyon rossz te majom";
+    }
+
+    return result;
 }
 
 
