@@ -73,7 +73,8 @@ form.addEventListener('submit' ,function(e){
     const evszam1_value = evszam1.value;
     const esemeny2_value = esemeny2.value;
     const evszam2_value = evszam2.value;
-    if(validatefields(uralkodo_nev_value,esemeny1_value,evszam1_value)&& validatefields2(esemeny2)){
+    if (validatefields(uralkodo_nev_value, esemeny1_value, evszam1_value) && 
+        validatefields2(esemeny2_value, evszam2_value)){
         const adatok = 
             {
                 uralkodo_nev : uralkodo_nev_value ,
@@ -176,18 +177,20 @@ function validatefields(uralkodo,esemeny1,evszam1){
     return result;
 }
 
-function validatefields2(esemeny2){
+function validatefields2(esemeny2, evszam2) {
     let result = true;
-    document.getElementById("esemeny2error").innerHTML = ""
-    document.getElementById("evszam2error").innerHTML = ""
+    document.getElementById("esemeny2error").innerHTML = "";
+    document.getElementById("evszam2error").innerHTML = "";
 
-    if(esemeny2 == ''){
-        
-        const esemeny2error = document.getElementById('esemeny2error');
-        esemeny2error.innerHTML="Nagyon rossz";
+    if (esemeny2 === "") {
+        document.getElementById("esemeny2error").innerHTML = "Második esemény megadása kötelező!";
         result = false;
     }
 
+    if (evszam2 === "") {
+        document.getElementById("evszam2error").innerHTML = "Második esemény évszámának megadása kötelező!";
+        result = false;
+    }
 
     return result;
 }
