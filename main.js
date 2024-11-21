@@ -73,7 +73,7 @@ form.addEventListener('submit' ,function(e){
     const evszam1_value = evszam1.value;
     const esemeny2_value = esemeny2.value;
     const evszam2_value = evszam2.value;
-    if(validatefields(uralkodo,esemeny1,evszam1, )&& validatefields2(esemeny2,evszam2)){
+    if(validatefields(uralkodo_nev_value,esemeny1_value,evszam1_value)&& validatefields2(esemeny2)){
         const adatok = 
             {
                 uralkodo_nev : uralkodo_nev_value ,
@@ -87,7 +87,7 @@ form.addEventListener('submit' ,function(e){
         array.push(adatok);
         irdki(array);
         form.reset();
-        }
+    }
         
         
 
@@ -147,48 +147,47 @@ form.addEventListener('submit' ,function(e){
 
 function validatefields(uralkodo,esemeny1,evszam1){
     let result = true;
+    document.getElementById("uralkodoerror").innerHTML=""
+    document.getElementById("esemeny1error").innerHTML=""
+    document.getElementById("evszam1error").innerHTML=""
 
-    if(uralkodo.value === ""){
+
+    if(uralkodo == ''){
+        
+        const uralkodoerror = document.getElementById('uralkodoerror');
+        uralkodoerror.innerHTML="Nagyon rossz";
         result = false;
-        const error = document.getElementById('error');
-        error.value="Nagyon rossz te majom";
     }
 
-    if(esemeny1.value === ""){
+    if(esemeny1 == ''){
+        
+        const esemeny1error = document.getElementById('esemeny1error');
+        esemeny1error.innerHTML="Nagyon rossz";
         result = false;
-        const error = document.getElementById('error');
-        error.value="Nagyon rossz te majom";
     }
 
-    if(evszam1.value === ""){
+    if(evszam1 == ''){
+        
+        const evszam1error = document.getElementById('evszam1error');
+        evszam1error.innerHTML="Nagyon rossz";
         result = false;
-        const error = document.getElementById('error');
-        error.value="Nagyon rossz te majom";
     }
 
     return result;
 }
 
-function validatefields2(esemeny2,evszam2){
+function validatefields2(esemeny2){
     let result = true;
+    document.getElementById("esemeny2error").innerHTML = ""
+    document.getElementById("evszam2error").innerHTML = ""
 
-    if(esemeny2.value === "" && evszam2 != "" ){
+    if(esemeny2 == ''){
+        
+        const esemeny2error = document.getElementById('esemeny2error');
+        esemeny2error.innerHTML="Nagyon rossz";
         result = false;
-        const error = document.getElementById('error');
-        error.value="Nagyon rossz te majom";
     }
 
-    if(evszam2.value === "" && esemeny2 != "" ){
-        result = false;
-        const error = document.getElementById('error');
-        error.value="Nagyon rossz te majom";
-    }
 
     return result;
 }
-
-
-
-
-
-
